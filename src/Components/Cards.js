@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import Button from '@mui/material/Button'
+import { useState } from 'react';
 
 const CardDiv = styled.div`
     display: block;
@@ -21,17 +22,29 @@ const RightTitleDiv = styled.div`
     display:flex;
 `;
 
-const CardBlock = styled.div`
+
+
+
+
+function Cards() {
+  
+  const CardBlock = styled.div`
     display: flex;
     overflow:hidden;
+    margin-left:${(props) => left ? '0vw': '-35vw'};
+    transition:transform 2s ease-out ;
 `;
+    const [left, setLeft] = useState(true);
 
-
-const handleClick =()=>{
-    console.log('Clicked!')
-}
-function Cards() {
-
+    const goLeft = () =>{
+        setLeft(!left)
+        console.log(left)
+        // let spaceLeft = '5vm'
+        // let spaceRight = '0vm'
+    }
+    const goRight = () =>{
+        setLeft(!left)
+    }
 
   return (
     <CardDiv>
@@ -39,10 +52,10 @@ function Cards() {
             <Typography variant='h5' >Plan a trip with help from local Hosts around the world</Typography>
             <RightTitleDiv> 
                 <Typography variant='body1' sx={{fontWeight:'bold'}} >Show(9)</Typography>
-                <Button sx={{color:'grey', borderRadius:'100%'}} onClick={handleClick}>        
+                <Button sx={{color:'grey', borderRadius:'100%'}} onClick={goLeft}>        
                     <ChevronLeftOutlinedIcon  sx={{border: '1px solid lightgray', borderRadius:'50%'}} />
                 </Button> 
-                <Button sx={{color:'grey', borderRadius:'100%'}} onClick={handleClick}>        
+                <Button sx={{color:'grey', borderRadius:'100%'}} onClick={goRight}>        
                     <ChevronRightOutlinedIcon  sx={{border: '1px solid lightgray', borderRadius:'50%'}} />
                 </Button> 
             </RightTitleDiv>

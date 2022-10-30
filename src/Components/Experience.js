@@ -10,9 +10,15 @@ import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import Button from '@mui/material/Button'
 import { useState } from 'react';
+import HorizontalScroll from 'react-scroll-horizontal'
+import MediaQuery from 'react-responsive'
 
 const MainDiv = styled.div`
     height:60vh;
+    
+ @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 
@@ -28,10 +34,10 @@ const Btndiv = styled.div`
 function Experience() {
     const BannerDiv=styled.div`
         display:flex;
-        overflow:hidden ;
+        overflow-x:hidden ;
         padding-left:5vw;
-        /* padding-Right:${(props) => left ? 15 : 0}; */
-        transition:transform 1s ;
+        margin-left:${(props) => left ? '0vw': '-35vw'};
+        transition:transform 2s ease ;
     `;
     const [left, setLeft] = useState(true);
 
@@ -48,6 +54,7 @@ function Experience() {
 
   return (
     <MainDiv>
+        <MediaQuery minWidth={1224}>
         <ExpHead>
             <Typography sx={{paddingInlineStart:'5vw', paddingY:3, fontWeight:'bold'}} variant='h3'>
                 New this week
@@ -62,6 +69,7 @@ function Experience() {
             </Btndiv>
         </ExpHead>
         <BannerDiv>
+       
             <Banner subTitle="Collection" 
                     title="Most popular around the world" 
                     img="https://a0.muscache.com/im/pictures/e35bb307-05f4-48a4-bdc5-3b2198bb9451.jpg?im_w=1200" />
@@ -72,6 +80,28 @@ function Experience() {
                 title="Fun for the family" 
                 img="https://a0.muscache.com/im/pictures/bcbd20bb-1654-4ea2-a86c-2cf25666f3b6.jpg?im_w=1200" />
         </BannerDiv>
+
+        </MediaQuery>
+        <MediaQuery maxWidth={768}>
+        <ExpHead>
+            <Typography sx={{paddingInlineStart:'5vw', paddingY:3, fontWeight:'light'}} variant='h5'>
+                New this week
+            </Typography>
+        </ExpHead>
+        <BannerDiv>
+        <HorizontalScroll>
+            <Banner subTitle="Collection" 
+                    title="Most popular around the world" 
+                    img="https://a0.muscache.com/im/pictures/e35bb307-05f4-48a4-bdc5-3b2198bb9451.jpg?im_w=1200" />
+            <Banner subTitle="Collection" 
+                    title="Great for team building" 
+                    img="https://a0.muscache.com/im/pictures/58819d01-2a71-441d-b3bc-baae0cd64da1.jpg?im_w=1200" />
+            <Banner subTitle="Collection" 
+                title="Fun for the family" 
+                img="https://a0.muscache.com/im/pictures/bcbd20bb-1654-4ea2-a86c-2cf25666f3b6.jpg?im_w=1200" />
+        </HorizontalScroll>
+        </BannerDiv>
+        </MediaQuery>
     </MainDiv>
   )
 }

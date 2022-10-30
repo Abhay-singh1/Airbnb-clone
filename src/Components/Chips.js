@@ -5,6 +5,8 @@ import Stack from '@mui/material/Stack';
 import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import Button from '@mui/material/Button'
+import { useState } from 'react';
+import HorizontalScroll from 'react-scroll-horizontal'
 
 const ChipDiv = styled.div`
 display:flex ;
@@ -24,10 +26,15 @@ const Chipcontainer = styled.div`
 function Chips() {
     const arr=['Dates', 'Group Size','More filters']
     const arr1 = ['Great-for-groups', 'Family-friendly', 'Animals', 'Arts & Writing', 'Baking', 'Cooking', 'Dance', 'Drinks', 'Entertainment', 'Fitness', 'history & culture', 'Magic']
-    
-    const handleClick =() =>{
+    const [left, setLeft] = useState(true)
+    const goLeftClick =() =>{
         console.log('clicked')
     }
+    const goRightClick =() =>{
+        console.log('clicked')
+    }
+
+   
   
     return (
     <ChipDiv>
@@ -38,19 +45,20 @@ function Chips() {
                 <Chip key={index} label={item} variant="outlined" />
              )})}
         </Stack>
-        <Button sx={{color:'lightGrey', borderRadius:'100%'}} onClick={handleClick}>        
+        <Button sx={{color:'lightGrey', borderRadius:'100%'}} onClick={goLeftClick}>        
             <ChevronLeftOutlinedIcon  sx={{border: '1px solid lightgray', borderRadius:'50%'}} />
         </Button>   
         <Chipcontainer>
-        
-        <Stack sx={{alignItems:'center'}} direction="row" spacing={1}>
+        <HorizontalScroll>
+        <Stack sx={{alignItems:'center', cursor:'pointer'}} direction="row" spacing={1}>
                     { arr1.map((item,index) => {
                             return(
                             <Chip key={index} label={item} />
                         )})}
         </Stack>
+        </HorizontalScroll>
         </Chipcontainer>
-            <Button sx={{color:'lightGrey', borderRadius:'100%'}} onClick={handleClick}>                
+            <Button sx={{color:'lightGrey', borderRadius:'100%'}} onClick={goRightClick}>                
                 <ChevronRightOutlinedIcon sx={{border: '1px solid lightgray', borderRadius:'50%'}} />
             </Button>    
     </ChipDiv>    
